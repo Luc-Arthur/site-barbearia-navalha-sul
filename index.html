@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Navalha Sul — Barbearia em Santa Maria</title>
+<meta name="description" content="Corte, barba e cuidado masculino no centro de Santa Maria. Agende pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Libre+Franklin:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#131110;--bg2:#1C1917;--cream:#EFE6D6;--muted:#A89F90;--brass:#C9A15B;--blood:#8E2A22;--line:rgba(239,230,214,.14)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;overflow-x:clip}
+  body{background:var(--bg);color:var(--cream);font-family:'Libre Franklin',sans-serif;line-height:1.6;overflow-x:clip}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.08;z-index:50;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+  .display{font-family:'Big Shoulders Display',sans-serif;text-transform:uppercase;line-height:.9;letter-spacing:.01em}
+  .serif{font-family:'Instrument Serif',serif;font-style:italic;text-transform:none;letter-spacing:0;color:var(--brass)}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:16px 28px;font-weight:600;font-size:15px;letter-spacing:.06em;text-transform:uppercase;border:1.5px solid var(--brass);transition:.25s}
+  .btn-fill{background:var(--brass);color:var(--bg)}
+  .btn-fill:hover{background:var(--cream);border-color:var(--cream)}
+  .btn-line:hover{background:var(--brass);color:var(--bg)}
+
+  /* top bar */
+  .topbar{border-bottom:1px solid var(--line);font-size:13px;color:var(--muted)}
+  .topbar .wrap{display:flex;justify-content:space-between;padding-top:10px;padding-bottom:10px}
+  .open{color:var(--cream)} .open::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#6FCF6F;margin-right:8px;box-shadow:0 0 0 4px rgba(111,207,111,.2)}
+
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:22px;padding-bottom:22px}
+  .logo{display:flex;align-items:center;gap:12px}
+  .pole{width:14px;height:40px;border-radius:7px;border:2px solid var(--brass);overflow:hidden;position:relative}
+  .pole::before{content:"";position:absolute;inset:-40px 0;background:repeating-linear-gradient(-45deg,var(--blood) 0 6px,var(--cream) 6px 12px,#1f3a5f 12px 18px,var(--cream) 18px 24px);animation:pole 2.4s linear infinite}
+  .logo b{font-family:'Big Shoulders Display';font-weight:900;font-size:28px;letter-spacing:.04em;text-transform:uppercase;line-height:1}
+  .logo small{display:block;font-size:10px;letter-spacing:.35em;color:var(--brass);text-transform:uppercase}
+  .links{display:flex;gap:34px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .links a:hover{color:var(--cream)}
+  nav .btn{padding:11px 20px;font-size:13px}
+
+  /* hero */
+  .hero{position:relative;padding:60px 0 100px;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:end}
+  .kicker{font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:22px;display:flex;align-items:center;gap:14px;animation:up .8s both}
+  .kicker::before{content:"";width:40px;height:1px;background:var(--brass)}
+  .hero h1{font-size:clamp(72px,12vw,176px);font-weight:900;animation:up .8s .1s both}
+  .hero h1 .serif{font-size:.62em;display:block;margin:.08em 0 .02em}
+  .hero h1 .outline{color:transparent;-webkit-text-stroke:2px var(--cream)}
+  .hero-side{padding-bottom:18px;animation:up .8s .25s both}
+  .hero-side p{font-size:18px;color:var(--muted);margin-bottom:30px}
+  .hero-side .row{display:flex;gap:12px;flex-wrap:wrap}
+  .badge{position:absolute;right:4%;top:40px;width:150px;height:150px;animation:spin 18s linear infinite}
+  .badge text{font-family:'Big Shoulders Display';font-weight:700;font-size:15.5px;letter-spacing:.4em;fill:var(--brass);text-transform:uppercase}
+
+  .ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;overflow:hidden}
+  .ticker div{display:flex;gap:40px;white-space:nowrap;animation:slide 30s linear infinite;font-family:'Big Shoulders Display';font-weight:700;font-size:22px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+  .ticker span::after{content:"✂";margin-left:40px;color:var(--brass)}
+
+  section{padding:120px 0}
+  .head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:60px;flex-wrap:wrap}
+  .head h2{font-size:clamp(52px,7vw,96px);font-weight:900}
+  .head p{max-width:360px;color:var(--muted)}
+  .num{font-family:'Big Shoulders Display';color:var(--brass);font-weight:700;letter-spacing:.2em;font-size:14px;display:block;margin-bottom:14px}
+
+  /* menu */
+  .menu{display:grid;grid-template-columns:1fr 1fr;gap:0 80px}
+  .item{padding:26px 0;border-bottom:1px solid var(--line);transition:padding .3s}
+  .item:hover{padding-left:12px}
+  .item .t{display:flex;align-items:baseline;gap:14px}
+  .item h3{font-family:'Big Shoulders Display';font-size:30px;text-transform:uppercase;font-weight:700;letter-spacing:.02em}
+  .item .dots{flex:1;border-bottom:2px dotted rgba(201,161,91,.45);transform:translateY(-6px)}
+  .item .price{font-family:'Big Shoulders Display';font-size:30px;font-weight:700;color:var(--brass)}
+  .item p{color:var(--muted);font-size:15px;margin-top:4px}
+  .item .tag{font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:var(--blood);padding:3px 8px;margin-left:6px;vertical-align:middle}
+
+  /* about */
+  .about{background:var(--cream);color:var(--bg)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+  .art{aspect-ratio:4/5;background:var(--bg);position:relative;overflow:hidden;display:grid;place-items:center}
+  .art::before{content:"";position:absolute;inset:18px;border:1.5px solid var(--brass)}
+  .art svg{width:62%;height:auto}
+  .art .cap{position:absolute;bottom:36px;left:0;right:0;text-align:center;font-family:'Big Shoulders Display';letter-spacing:.3em;color:var(--brass);font-size:14px;text-transform:uppercase}
+  .about h2{font-size:clamp(48px,6vw,84px);font-weight:900;margin-bottom:26px}
+  .about h2 .serif{color:var(--blood)}
+  .about p{font-size:18px;color:#4A433B;margin-bottom:18px}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:40px;border-top:1.5px solid var(--bg)}
+  .stats div{padding:22px 0}
+  .stats b{font-family:'Big Shoulders Display';font-size:52px;font-weight:900;display:block;line-height:1}
+  .stats span{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#6B6258}
+
+  /* team */
+  .team{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .barber{background:var(--bg2);padding:34px;border:1px solid var(--line);position:relative;transition:transform .3s,border-color .3s}
+  .barber:hover{transform:translateY(-8px);border-color:var(--brass)}
+  .mono{width:88px;height:88px;border-radius:50%;border:1.5px solid var(--brass);display:grid;place-items:center;font-family:'Instrument Serif';font-style:italic;font-size:42px;color:var(--brass);margin-bottom:26px}
+  .barber h3{font-family:'Big Shoulders Display';font-size:32px;text-transform:uppercase;font-weight:700}
+  .barber .role{color:var(--brass);font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+  .barber p{color:var(--muted);margin-top:14px;font-size:15px}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+  .step{padding:40px 36px 10px 0}
+  .step b{font-family:'Big Shoulders Display';font-size:84px;font-weight:900;color:transparent;-webkit-text-stroke:1.5px var(--brass);line-height:1}
+  .step h3{font-family:'Big Shoulders Display';font-size:28px;text-transform:uppercase;margin:10px 0 6px}
+  .step p{color:var(--muted)}
+
+  /* visit */
+  .visit{display:grid;grid-template-columns:1fr 1.1fr;gap:0;border:1px solid var(--line)}
+  .hours{padding:50px}
+  .hours h2{font-size:64px;font-weight:900;margin-bottom:30px}
+  .hours li{list-style:none;display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line);font-size:17px}
+  .hours li span:last-child{color:var(--brass);font-family:'Big Shoulders Display';font-size:22px;font-weight:700}
+  .hours li.off span:last-child{color:var(--muted)}
+  .addr{margin-top:30px;color:var(--muted)}
+  .addr b{color:var(--cream);display:block;font-size:18px}
+  .map{position:relative;background:#1A1715;min-height:420px;overflow:hidden;
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:44px 44px}
+  .map .road{position:absolute;background:#2A2522}
+  .r1{left:0;right:0;top:46%;height:26px;transform:rotate(-8deg)}
+  .r2{top:0;bottom:0;left:38%;width:22px;transform:rotate(12deg)}
+  .r3{top:0;bottom:0;left:74%;width:16px}
+  .pin{position:absolute;left:52%;top:40%;transform:translate(-50%,-100%);text-align:center}
+  .pin i{display:block;width:46px;height:46px;background:var(--blood);border:3px solid var(--cream);border-radius:50% 50% 50% 0;transform:rotate(-45deg);margin:0 auto;animation:drop 1s both}
+  .pin span{display:inline-block;margin-top:14px;background:var(--cream);color:var(--bg);font-family:'Big Shoulders Display';font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:6px 12px}
+  .pulse{position:absolute;left:52%;top:40%;width:20px;height:20px;border-radius:50%;background:var(--blood);transform:translate(-50%,-50%);animation:pulse 2s infinite}
+
+  /* cta */
+  .cta{text-align:center;padding:130px 0;position:relative;overflow:hidden}
+  .cta h2{font-size:clamp(64px,11vw,160px);font-weight:900}
+  .cta p{color:var(--muted);font-size:18px;margin:20px 0 40px}
+  .wa{background:#25D366;border-color:#25D366;color:#0b2914}
+  .wa:hover{background:var(--cream);border-color:var(--cream)}
+  .float-wa{position:fixed;right:22px;bottom:22px;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;z-index:40;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .2s}
+  .float-wa:hover{transform:scale(1.08)}
+
+  footer{border-top:1px solid var(--line);padding:36px 0;color:var(--muted);font-size:13px}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .9s,transform .9s}
+  .reveal.in{opacity:1;transform:none}
+
+  @keyframes up{from{opacity:0;transform:translateY(30px)}}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes slide{to{transform:translateX(-50%)}}
+  @keyframes pole{to{transform:translateY(34px)}}
+  @keyframes drop{from{opacity:0;transform:rotate(-45deg) translate(-40px,-40px)}}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(142,42,34,.7)}100%{box-shadow:0 0 0 40px rgba(142,42,34,0)}}
+
+  @media (max-width:900px){
+    .links,.topbar .hide{display:none}
+    .hero-grid,.about-grid,.menu,.visit,.team,.steps{grid-template-columns:1fr}
+    .badge{display:none}
+    .hero{padding:40px 0 70px}
+    section{padding:80px 0}
+    .hours{padding:32px 22px}
+    .map{min-height:300px}
+    .step{padding-right:0}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap"><span class="open">Aberto hoje até 20h</span><span class="hide">Centro · Santa Maria/RS</span></div></div>
+
+<nav><div class="wrap">
+  <a href="#" class="logo"><span class="pole"></span><span><b>Navalha Sul</b><small>Barbearia · desde 2019</small></span></a>
+  <div class="links"><a href="#servicos">Serviços</a><a href="#sobre">A casa</a><a href="#equipe">Equipe</a><a href="#visite">Visite</a></div>
+  <a href="#agendar" class="btn btn-line">Agendar</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <svg class="badge" viewBox="0 0 150 150" aria-hidden="true">
+    <defs><path id="c" d="M75,75 m-58,0 a58,58 0 1,1 116,0 a58,58 0 1,1 -116,0"/></defs>
+    <text><textPath href="#c">Corte · Barba · Toalha quente ·</textPath></text>
+    <text x="75" y="86" text-anchor="middle" style="font-size:34px;letter-spacing:0">✂</text>
+  </svg>
+  <p class="kicker">Barbearia clássica no centro</p>
+  <div class="hero-grid">
+    <h1 class="display">Corte na <span class="outline">régua.</span><span class="serif">e conversa boa</span></h1>
+    <div class="hero-side">
+      <p>Cortes clássicos e modernos, barba com toalha quente e um café enquanto você espera. Agende em 1 minuto pelo WhatsApp.</p>
+      <div class="row"><a href="#agendar" class="btn btn-fill">Agendar horário</a><a href="#servicos" class="btn btn-line">Ver preços</a></div>
+    </div>
+  </div>
+</div></header>
+
+<div class="ticker"><div>
+  <span>Degradê</span><span>Barba completa</span><span>Toalha quente</span><span>Pigmentação</span><span>Corte infantil</span><span>Sobrancelha</span>
+  <span>Degradê</span><span>Barba completa</span><span>Toalha quente</span><span>Pigmentação</span><span>Corte infantil</span><span>Sobrancelha</span>
+</div></div>
+
+<section id="servicos"><div class="wrap reveal">
+  <div class="head"><div><span class="num">01 — Serviços</span><h2 class="display">Cardápio <span class="serif">da casa</span></h2></div><p>Preços fixos, sem surpresa. Todos os serviços incluem lavagem e finalização.</p></div>
+  <div class="menu">
+    <div class="item"><div class="t"><h3>Corte</h3><span class="dots"></span><span class="price">R$ 45</span></div><p>Tesoura ou máquina, do clássico ao degradê.</p></div>
+    <div class="item"><div class="t"><h3>Barba <span class="tag">Toalha quente</span></h3><span class="dots"></span><span class="price">R$ 35</span></div><p>Navalha, toalha quente e hidratação.</p></div>
+    <div class="item"><div class="t"><h3>Corte + Barba</h3><span class="dots"></span><span class="price">R$ 70</span></div><p>O combo mais pedido da casa.</p></div>
+    <div class="item"><div class="t"><h3>Degradê</h3><span class="dots"></span><span class="price">R$ 50</span></div><p>Transição perfeita, acabamento na navalha.</p></div>
+    <div class="item"><div class="t"><h3>Corte infantil</h3><span class="dots"></span><span class="price">R$ 35</span></div><p>Até 12 anos, com paciência de sobra.</p></div>
+    <div class="item"><div class="t"><h3>Sobrancelha</h3><span class="dots"></span><span class="price">R$ 15</span></div><p>Na navalha ou na pinça.</p></div>
+  </div>
+</div></section>
+
+<section id="sobre" class="about"><div class="wrap about-grid reveal">
+  <div class="art">
+    <svg viewBox="0 0 200 200" fill="none" stroke="#C9A15B" stroke-width="3" aria-hidden="true">
+      <circle cx="62" cy="150" r="22"/><circle cx="138" cy="150" r="22"/>
+      <path d="M76 133 L150 20"/><path d="M124 133 L50 20"/>
+      <circle cx="100" cy="98" r="4" fill="#C9A15B"/>
+    </svg>
+    <span class="cap">Navalha Sul · Est. 2019</span>
+  </div>
+  <div>
+    <span class="num" style="color:var(--blood)">02 — A casa</span>
+    <h2 class="display">Mais que um corte, <span class="serif">um ritual.</span></h2>
+    <p>A Navalha Sul nasceu para ser aquele lugar onde você chega, senta, toma um café e sai se sentindo outra pessoa.</p>
+    <p>Ambiente climatizado, música boa, material esterilizado a cada atendimento e barbeiros que sabem ouvir o que você quer.</p>
+    <div class="stats"><div><b>3</b><span>Barbeiros</span></div><div><b>6</b><span>Dias por semana</span></div><div><b>45'</b><span>Por atendimento</span></div></div>
+  </div>
+</div></section>
+
+<section id="equipe"><div class="wrap reveal">
+  <div class="head"><div><span class="num">03 — Equipe</span><h2 class="display">Quem <span class="serif">cuida de você</span></h2></div></div>
+  <div class="team">
+    <div class="barber"><div class="mono">R</div><h3>Rafael</h3><span class="role">Fundador · Clássicos</span><p>Especialista em cortes na tesoura e barba tradicional com navalha.</p></div>
+    <div class="barber"><div class="mono">D</div><h3>Diego</h3><span class="role">Degradê · Freestyle</span><p>O cara dos degradês perfeitos e dos desenhos na máquina.</p></div>
+    <div class="barber"><div class="mono">T</div><h3>Thiago</h3><span class="role">Barba · Pigmentação</span><p>Cuida da barba do alinhamento à pigmentação.</p></div>
+  </div>
+</div></section>
+
+<section id="agendar" style="padding-top:0"><div class="wrap reveal">
+  <div class="head"><div><span class="num">04 — Agendamento</span><h2 class="display">Simples <span class="serif">assim</span></h2></div></div>
+  <div class="steps">
+    <div class="step"><b>01</b><h3>Chame no WhatsApp</h3><p>Clique no botão e mande um “oi”.</p></div>
+    <div class="step"><b>02</b><h3>Escolha o horário</h3><p>Diga o serviço e o barbeiro de preferência.</p></div>
+    <div class="step"><b>03</b><h3>É só chegar</h3><p>Receba um lembrete 1 hora antes do seu horário.</p></div>
+  </div>
+</div></section>
+
+<section id="visite" style="padding-top:0"><div class="wrap reveal">
+  <div class="visit">
+    <div class="hours">
+      <span class="num">05 — Visite</span>
+      <h2 class="display">Horários</h2>
+      <ul>
+        <li><span>Segunda</span><span>13h — 20h</span></li>
+        <li><span>Terça a Sexta</span><span>9h — 20h</span></li>
+        <li><span>Sábado</span><span>8h — 17h</span></li>
+        <li class="off"><span>Domingo</span><span>Fechado</span></li>
+      </ul>
+      <p class="addr"><b>Rua Exemplo, 123 — Centro</b>Santa Maria/RS · Estacionamento conveniado</p>
+    </div>
+    <div class="map" aria-label="Mapa ilustrativo">
+      <div class="road r1"></div><div class="road r2"></div><div class="road r3"></div>
+      <div class="pulse"></div>
+      <div class="pin"><i></i><span>Navalha Sul</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="cta"><div class="wrap reveal">
+  <h2 class="display">Bora <span class="serif">dar um trato?</span></h2>
+  <p>Agende agora e garanta o seu horário.</p>
+  <a href="#" class="btn wa">Agendar pelo WhatsApp</a>
+</div></section>
+
+<a href="#agendar" class="float-wa" aria-label="WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.6 11.6 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3z"/></svg>
+</a>
+
+<footer><div class="wrap">
+  <span>© Navalha Sul Barbearia</span>
+  <span>Projeto de demonstração — marca fictícia criada para portfólio.</span>
+</div></footer>
+
+<script>
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
